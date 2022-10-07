@@ -1,0 +1,3 @@
+/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles/pr.dir
+/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles/edit_cache.dir
+/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles/rebuild_cache.dir
