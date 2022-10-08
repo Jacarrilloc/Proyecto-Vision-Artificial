@@ -8,6 +8,16 @@
 using namespace std;
 using namespace cv;
 
+list<Mat> imagenes;
+
+void llenarLista()
+{
+  if(imagenes.empty())
+  {
+    cout<<"entró a if "<<endl;
+  }
+}
+
 int main( int argc, char** argv )
 {
     //-----LECTURA DE IMAGEN-----
@@ -31,4 +41,6 @@ int main( int argc, char** argv )
     std::cerr << "Error: No image data" << std::endl;
     return( -1);
   }
+
+  llenarLista();
 }

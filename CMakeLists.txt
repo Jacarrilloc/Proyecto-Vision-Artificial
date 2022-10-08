@@ -40,5 +40,5 @@ MARK_AS_ADVANCED(
 ## = Programs to compile =
 ## =======================
 
-ADD_EXECUTABLE( pr proyecto.cxx )
-TARGET_LINK_LIBRARIES( pr ${OpenCV_LIBS} )
+ADD_EXECUTABLE( proyecto proyecto.cxx )
+TARGET_LINK_LIBRARIES( proyecto ${OpenCV_LIBS} )

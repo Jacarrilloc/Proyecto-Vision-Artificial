@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named pr
+# Target rules for targets named proyecto
 
 # Build rule for target.
-pr: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pr
-.PHONY : pr
+proyecto: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 proyecto
+.PHONY : proyecto
 
 # fast build rule for target.
-pr/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/build
-.PHONY : pr/fast
+proyecto/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/build
+.PHONY : proyecto/fast
 
 proyecto.o: proyecto.cxx.o
 .PHONY : proyecto.o
 
 # target to build an object file
 proyecto.cxx.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/proyecto.cxx.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/proyecto.cxx.o
 .PHONY : proyecto.cxx.o
 
 proyecto.i: proyecto.cxx.i
@@ -142,7 +142,7 @@ proyecto.i: proyecto.cxx.i
 
 # target to preprocess a source file
 proyecto.cxx.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/proyecto.cxx.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/proyecto.cxx.i
 .PHONY : proyecto.cxx.i
 
 proyecto.s: proyecto.cxx.s
@@ -150,7 +150,7 @@ proyecto.s: proyecto.cxx.s
 
 # target to generate assembly for a file
 proyecto.cxx.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/proyecto.cxx.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/proyecto.cxx.s
 .PHONY : proyecto.cxx.s
 
 # Help Target
@@ -161,7 +161,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... pr"
+	@echo "... proyecto"
 	@echo "... proyecto.o"
 	@echo "... proyecto.i"
 	@echo "... proyecto.s"

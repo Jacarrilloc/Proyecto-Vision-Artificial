@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = "/home/julian/Escritorio/Universidad/Proyecto Vision Artifici
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/pr.dir/all
+all: CMakeFiles/proyecto.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/pr.dir/clean
+clean: CMakeFiles/proyecto.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/pr.dir
+# Target rules for target CMakeFiles/proyecto.dir
 
 # All Build rule for target.
-CMakeFiles/pr.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles" --progress-num=1,2 "Built target pr"
-.PHONY : CMakeFiles/pr.dir/all
+CMakeFiles/proyecto.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles" --progress-num=1,2 "Built target proyecto"
+.PHONY : CMakeFiles/proyecto.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/pr.dir/rule: cmake_check_build_system
+CMakeFiles/proyecto.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles" 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pr.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/proyecto.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/julian/Escritorio/Universidad/Proyecto Vision Artificial/Proyecto-Vision-Artificial/build/CMakeFiles" 0
-.PHONY : CMakeFiles/pr.dir/rule
+.PHONY : CMakeFiles/proyecto.dir/rule
 
 # Convenience name for target.
-pr: CMakeFiles/pr.dir/rule
-.PHONY : pr
+proyecto: CMakeFiles/proyecto.dir/rule
+.PHONY : proyecto
 
 # clean rule for target.
-CMakeFiles/pr.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pr.dir/build.make CMakeFiles/pr.dir/clean
-.PHONY : CMakeFiles/pr.dir/clean
+CMakeFiles/proyecto.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyecto.dir/build.make CMakeFiles/proyecto.dir/clean
+.PHONY : CMakeFiles/proyecto.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
