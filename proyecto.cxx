@@ -43,4 +43,12 @@ int main( int argc, char** argv )
   }
 
   llenarLista();
+
+  if(!imagenes.empty())
+  {
+    cout<<"Lista de Imagenes llena"<<endl;
+  }
+  else{
+    cout<<"Lista de Imagenes vacia"<<endl;
+  }
 }
