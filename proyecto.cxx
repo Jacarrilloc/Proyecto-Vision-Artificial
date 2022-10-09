@@ -19,26 +19,8 @@ void guardarIMagen(Mat imagen,String nombre)
 Mat eliminarRuido(Mat imagen)
 {
   Mat sinRuido;
-  Mat kernel, kernel_2;
-  Point anchor,anchor_2;
-  double delta;
-  int ddepth;
-  int kernel_size, kernel_size_2;
-
-  anchor = Point( -1 , -1 );
-  delta = 0;
-  ddepth = -1;
-
-  for(int i = 0 ; i < 5 ; i++)
-  {
-    int ind = 0;
-    for(int i=0;i<5;i++)
-    {
-      kernel_size = 3 + 2*( ind%5 );
-      kernel = Mat::ones( kernel_size, kernel_size, CV_32F )/ (float)(kernel_size*kernel_size);
-      filter2D(imagen, sinRuido, ddepth , kernel, anchor, delta, BORDER_DEFAULT );
-    }
-  }
+  GaussianBlur( imagen, sinRuido, Size(3,3), 3, 3);
+  GaussianBlur( sinRuido, sinRuido, Size(3,3), 3, 3);
   guardarIMagen(sinRuido,"sin_Ruido");
   return sinRuido;
 }
