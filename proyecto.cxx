@@ -92,7 +92,7 @@ Mat canalesRGB(Mat image)
 
 
   guardarIMagen(res_img_R,"canal_Rojo_comprimido");
-  guardarIMagen(res_img_R,"canal_Verde_comprimido");
+  guardarIMagen(res_img_G,"canal_Verde_comprimido");
   guardarIMagen(res_img_B,"canal_Azul_comprimido");
 
   //Inicio de Reescalado
@@ -184,6 +184,25 @@ Mat canalesRGB(Mat image)
   return output;
 }*/
 
+Mat segmentarImg(Mat imagen)
+{
+  int threshold_value = 4;
+    // Valid Values: 0, 1, 2, 3, 4
+  int threshold_type = 1; 
+    // maxVal, useful for threshold_type 1 and 2
+  int maxVal = 255;
+    // Source image
+  Mat src = imagen;
+  Mat src_gray, dst;
+    // Convert the image to GrayScale
+  cvtColor(src, src_gray, cv::COLOR_BGR2GRAY);
+  guardarIMagen(src_gray,"escala_gris");
+  
+  threshold(src_gray, dst, threshold_value,maxVal, threshold_type);
+  guardarIMagen(dst,"segmentado");
+  return dst;
+}
+
 Mat eliminarRuido(Mat imagen)
 {
   Mat sinRuido;
@@ -196,6 +215,7 @@ Mat eliminarRuido(Mat imagen)
 Mat prepararImagen(Mat imagen)
 {
   Mat resultado;
+  Mat prueba = segmentarImg(imagen);
   resultado = canalesRGB(imagen);
   resultado = eliminarRuido(resultado); 
   return resultado;
