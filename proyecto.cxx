@@ -8,7 +8,15 @@
 using namespace std;
 using namespace cv;
 
-list<Mat> imagenes;
+
+struct imagenes
+{
+  Mat imagen;
+  int valor;
+};
+
+
+list<imagenes> imagenesCargadas;
 
 void guardarIMagen(Mat imagen,String nombre)
 {
@@ -34,7 +42,7 @@ Mat prepararImagen(Mat imagen)
 
 void llenarLista()
 {
-  if(imagenes.empty())
+  if(imagenesCargadas.empty())
   {
     cout<<"entró a if "<<endl;
   }
@@ -69,7 +77,7 @@ int main( int argc, char** argv )
   llenarLista();
   Mat imagenF = prepararImagen(image);
 
-  if(!imagenes.empty())
+  if(!imagenesCargadas.empty())
   {
     cout<<"Lista de Imagenes llena"<<endl;
   }
