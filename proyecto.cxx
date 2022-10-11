@@ -13,9 +13,18 @@ struct imagenes
 {
   Mat imagen;
   int valor;
+  bool posicion; //si es true, es front, si es false, es back
 };
 
 list<imagenes> imagenesCargadas;
+
+void llenarLista()
+{
+  if(imagenesCargadas.empty())
+  {
+    
+  }
+}
 
 void guardarIMagen(Mat imagen,String nombre)
 {
@@ -187,17 +196,9 @@ Mat eliminarRuido(Mat imagen)
 Mat prepararImagen(Mat imagen)
 {
   Mat resultado;
-  resultado = eliminarRuido(imagen);
-  resultado = canalesRGB(resultado);
+  resultado = canalesRGB(imagen);
+  resultado = eliminarRuido(resultado); 
   return resultado;
-}
-
-void llenarLista()
-{
-  if(imagenesCargadas.empty())
-  {
-    cout<<"entró a if "<<endl;
-  }
 }
 
 int main( int argc, char** argv )
@@ -226,7 +227,7 @@ int main( int argc, char** argv )
 
   //-------- INICIO DEL PROGRAMA ---------
 
-  llenarLista();
+  //llenarLista();
   Mat imagenF = prepararImagen(image);
 
   if(!imagenesCargadas.empty())
