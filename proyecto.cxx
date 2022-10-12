@@ -32,11 +32,44 @@ void guardarIMagen(Mat imagen,String nombre)
   cout<<"-----IMAGEN " << nombre << ".png CREADA----"<<endl; 
 }
 
+void histograma(Mat src)
+{
+  vector<Mat> bgr_planes;
+    split( src, bgr_planes );
+    int histSize = 256;
+    float range[] = { 0, 256 }; //the upper boundary is exclusive
+    const float* histRange[] = { range };
+    bool uniform = true, accumulate = false;
+    Mat b_hist, g_hist, r_hist;
+    calcHist( &bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, histRange, uniform, accumulate );
+    calcHist( &bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, histRange, uniform, accumulate );
+    calcHist( &bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, histRange, uniform, accumulate );
+    int hist_w = 512, hist_h = 400;
+    int bin_w = cvRound( (double) hist_w/histSize );
+    Mat histImage( hist_h, hist_w, CV_8UC3, Scalar( 0,0,0) );
+    normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    for( int i = 1; i < histSize; i++ )
+    {
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(b_hist.at<float>(i-1)) ),
+              Point( bin_w*(i), hist_h - cvRound(b_hist.at<float>(i)) ),
+              Scalar( 255, 0, 0), 2, 8, 0  );
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(g_hist.at<float>(i-1)) ),
+              Point( bin_w*(i), hist_h - cvRound(g_hist.at<float>(i)) ),
+              Scalar( 0, 255, 0), 2, 8, 0  );
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1)) ),
+              Point( bin_w*(i), hist_h - cvRound(r_hist.at<float>(i)) ),
+              Scalar( 0, 0, 255), 2, 8, 0  );
+    }
+  guardarIMagen(histImage,"histograma_imagen");
+}
+
 Mat umbralizar (Mat imagen)
 {
   Mat imagenGris, resultado;
   int threshold_value = 1;
-  int threshold_type = 3;
+  int threshold_type = 1;
   int  max_value = 255;
   int  max_type = 4;
   int  max_BINARY_value = 255;
@@ -96,10 +129,10 @@ Mat canalesRGB(Mat image)
   	(*cbIt)[1] = 0;
   	(*cbIt)[2] = 0;
   }
-  /*
+  
   guardarIMagen(rImg,"canal_Rojo");
   guardarIMagen(gImg,"canal_Verde");
-  guardarIMagen(bImg,"canal_Azul");*/
+  guardarIMagen(bImg,"canal_Azul");
 
   Mat res_img_R = Mat::zeros( rImg.size( ), CV_8UC3 );
   Mat res_img_B = Mat::zeros( gImg.size( ), CV_8UC3 );
@@ -121,9 +154,9 @@ Mat canalesRGB(Mat image)
   resize(res_img_G, res_img_G_2, Size(), 2 , 2 , INTER_LINEAR);  
   resize(res_img_B, res_img_B_2, Size(), 4 , 4 , INTER_LINEAR);  
 
-  /*guardarIMagen(res_img_R_2,"canal_Rojo_reescalado");
+  guardarIMagen(res_img_R_2,"canal_Rojo_reescalado");
   guardarIMagen(res_img_R_2,"canal_Verde_reescalado");
-  guardarIMagen(res_img_B_2,"canal_Azul_reescalado");*/
+  guardarIMagen(res_img_B_2,"canal_Azul_reescalado");
 
   Mat rgbImg = Mat::zeros( image.size( ), CV_8UC3 );
 
@@ -194,12 +227,37 @@ Mat eliminarRuido(Mat imagen)
   return sinRuido;
 }
 
+cv::Mat maxValueGraying(cv::Mat src_image)
+{
+    cv::Mat gray_image(src_image.size(), CV_8UC1);
+ 
+    for (size_t i = 0; i < src_image.rows; i++)
+    {
+        for (size_t j = 0; j < src_image.cols; j++)
+        {
+            gray_image.at<uchar>(i, j) = std::max(
+                src_image.at<cv::Vec3b>(i, j)[0],
+                std::max(
+                    src_image.at<cv::Vec3b>(i, j)[1],
+                    src_image.at<cv::Vec3b>(i, j)[2]
+                )
+            );
+ 
+        }
+    }
+    guardarIMagen(gray_image,"en_gris");
+    return gray_image;
+}
+
 Mat prepararImagen(Mat imagen)
 {
   Mat resultado;
+  Mat aux;
 
-  resultado = umbralizar(imagen); 
-  resultado = canalesRGB(resultado);
+  resultado = canalesRGB(imagen);
+  resultado = umbralizar(resultado);
+  histograma(imagen); 
+  aux = maxValueGraying(resultado);
   Mat prueba = metodoDistorsion(imagen,-1);
   resultado = eliminarRuido(resultado);
   //resultado = umbralizar(resultado);
